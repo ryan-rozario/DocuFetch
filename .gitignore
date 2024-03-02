@@ -1,3 +1,6 @@
+#persistent storage for vector db
+persistent_storage/  
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
