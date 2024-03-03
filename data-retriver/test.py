@@ -1,37 +1,22 @@
+import chromadb
 
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_community.llms import Ollama
-llm = Ollama(model="llama2")
-
 from langchain_core.prompts import ChatPromptTemplate
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are world class technical documentation writer."),
-    ("user", "{input}")
-])
-
-chain = prompt | llm 
-
-from langchain_core.output_parsers import StrOutputParser
-
-output_parser = StrOutputParser()
-
-chain = prompt | llm | output_parser
-
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
-prompt = ChatPromptTemplate.from_template("""Answer the following question based only on the provided context:
+llm = Ollama(model="llama2")
 
+prompt = ChatPromptTemplate.from_template("""Answer the following question based only on the provided context:
 <context>
 {context}
 </context>
-
 Question: {input}""")
 
 document_chain = create_stuff_documents_chain(llm, prompt)
 
-from langchain_community.vectorstores import Chroma
 
-import chromadb
-from langchain_community.embeddings import SentenceTransformerEmbeddings
 embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 client = chromadb.PersistentClient(path="./vector-db/chromadb/persistent_storage")
