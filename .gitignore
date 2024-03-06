@@ -1,3 +1,5 @@
+venv/
+
 #persistent storage for vector db
 persistent_storage/  
 

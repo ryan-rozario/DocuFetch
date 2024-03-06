@@ -1,4 +1,5 @@
 FROM python:3
+ARG BASE_URL
 RUN mkdir /src
 WORKDIR /src
 COPY requirements.txt .
