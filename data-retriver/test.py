@@ -23,15 +23,17 @@ client = chromadb.PersistentClient(path="./vector-db/chromadb/persistent_storage
 # load it into Chroma
 langchain_chroma = Chroma(
     client=client,
-    collection_name="collection_name",
+    collection_name="document-store",
     embedding_function = embeddings
 )
 
 from langchain.chains import create_retrieval_chain
 
-retriever = langchain_chroma.as_retriever()
-retrieval_chain = create_retrieval_chain(retriever, document_chain)
+retriever = langchain_chroma.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": 0.001})
+#retrieval_chain = create_retrieval_chain(retriever, document_chain)
+docs = retriever.get_relevant_documents("who isryan rozario")
+print(docs)
 
-response = retrieval_chain.invoke({"input": "what is hyperloglog]"})
-print(response["answer"])
+#response = retrieval_chain.invoke({"input": "ryan rozario]"})
+#print(response["answer"])
 

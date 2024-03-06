@@ -28,7 +28,7 @@ embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 client = chromadb.PersistentClient(path="./vector-db/chromadb/persistent_storage")
 langchain_chroma = Chroma(
     client=client,
-    collection_name="collection_name",
+    collection_name="document-store",
     embedding_function=embeddings
 )
 
