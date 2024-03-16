@@ -24,7 +24,7 @@ Body:
 `{"input": "what does ryan rozario do"}`
 
 ## Todo
-[] Make a data loader api rather than a job that has to be run at the start
-[] Improve crawler to use a particular base url rather than domain
-[] Try to see if using bfs gives better results
+- [] Make a data loader api rather than a job that has to be run at the start
+- [] Improve crawler to use a particular base url rather than domain
+- [] Try to see if using bfs gives better results
 
