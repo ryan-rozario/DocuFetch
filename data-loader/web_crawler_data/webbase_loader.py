@@ -20,6 +20,7 @@ class WebCrawler:
     
     
     def _crawl_website(self, url : str):
+        #modify below condition to control the number of pages to crawl
         if(len(self.visited_sites)==10):
             return
         if url in self.visited_sites:
@@ -50,7 +51,8 @@ class WebCrawler:
             next_url = urljoin(url, link['href'])
             parsed_next_url = urlparse(next_url)
 
-            if parsed_next_url.netloc == self.base_url.netloc:
+            #modify below condition to restrict which websites to crawl
+            if parsed_next_url.netloc == self.base_url.netloc: 
                 self._crawl_website(next_url)
 
     def _extract_data(self, html: str) -> str:
